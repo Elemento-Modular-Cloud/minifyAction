@@ -52,5 +52,5 @@ try:
     path = sys.argv[1]
     single_file(path)
 except Exception as e:
-    print(e)
+    print(sys.argv)
     print("Path not found: "+path)

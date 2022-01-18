@@ -49,7 +49,7 @@ done
 for s in $SCSS
 do
 # Sending path to minifier.py
-minifier $c
+minifier $s
 # Counting this files in items
 ITEMS=$(($ITEMS + 1))
 done

@@ -15,5 +15,5 @@ runs:
   steps:
     - run: |
         cd ${{ github.action_path }}/script
-        sudo bash minify.sh ${{github.repository}}
+        sudo bash minify.sh ${{github.repository}} 
       shell: bash

@@ -8,6 +8,8 @@ def single_file(path):
     file_name, file_ext = os.path.splitext(path)
     if file_ext == '.js':
         do_js(path)
+    if file_ext == '.scss':
+        do_css(path)
     if file_ext == '.css':
         do_css(path)
     if file_ext == '.html' or file_ext == '.htm':
@@ -21,6 +23,10 @@ def do_js(path):
     process_single_js_file(path, overwrite=True)
 
 def do_css(path):
+    from css_html_js_minify import process_single_css_file, css_minify
+    process_single_css_file(path, overwrite=True)
+
+def do_scss(path):
     from css_html_js_minify import process_single_css_file, css_minify
     process_single_css_file(path, overwrite=True)
 

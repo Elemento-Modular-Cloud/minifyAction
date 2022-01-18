@@ -7,6 +7,8 @@ cd workspace
 
 # Getting all css files in project
 CSS=$(find . -type f -name "*.css")
+# Getting all css files in project
+SCSS=$(find . -type f -name "*.scss")
 # Getting all js files in project
 JS=$(find . -type f -name "*.js")
 
@@ -19,6 +21,14 @@ HTM=$(find . -type f -name "*.htm")
 ITEMS=0
 
 for c in $CSS
+do
+# Sending path to minifier.py
+minifier $c
+# Counting this files in items
+ITEMS=$(($ITEMS + 1))
+done
+
+for s in $SCSS
 do
 # Sending path to minifier.py
 minifier $c

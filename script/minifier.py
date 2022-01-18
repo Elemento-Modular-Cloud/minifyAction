@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import sys
+import os
+
 
 def single_file(path):
     print("doning on --> ", path)
@@ -15,27 +17,42 @@ def single_file(path):
     if file_ext == '.html' or file_ext == '.htm':
         do_html(path)
 
+
 def all_files():
     print('yep')
 
-def do_js(path):
-    from css_html_js_minify import process_single_js_file, js_minify
-    process_single_js_file(path, overwrite=True)
 
-def do_css(path):
-    from css_html_js_minify import process_single_css_file, css_minify
-    process_single_css_file(path, overwrite=True)
+def do_js(path, overwrite=True):
+    from css_html_js_minify import process_single_js_file
+    process_single_js_file(path, overwrite=overwrite)
 
-def do_scss(path):
-    from css_html_js_minify import process_single_css_file, css_minify
-    process_single_css_file(path, overwrite=True)
 
-def do_html(path):
-    from css_html_js_minify import process_single_html_file, html_minify
-    process_single_html_file(path, overwrite=True)
+def do_css(path, overwrite=True):
+    file_name, file_ext = os.path.splitext(path)
+    from css_html_js_minify import process_single_css_file
+    if not overwrite:
+        process_single_css_file(path, output_path=(file_name + ".min.scss"))
+    else:
+        process_single_css_file(path,
+                                output_path=(file_name + ".scss"),
+                                overwrite=True)
+
+
+def do_scss(path, overwrite=True):
+    from css_html_js_minify import process_single_css_file
+    process_single_css_file(path, overwrite=overwrite)
+
+
+def do_html(path, overwrite=True):
+    from css_html_js_minify import process_single_html_file
+    process_single_html_file(path, overwrite=overwrite)
+
 
 try:
     path = sys.argv[1]
     single_file(path)
 except:
     print("Path not found")
+
+if __name__ == "__main__":
+    do_css("/Users/gabrielegaetanofronze/gitstuff/minifyAction/test.scss", False)

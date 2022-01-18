@@ -7,15 +7,30 @@ cd workspace
 
 # Getting all css files in project
 CSS=$(find . -type f -name "*.css")
+echo "CSS:"
+echo $CSS
+echo
 # Getting all css files in project
 SCSS=$(find . -type f -name "*.scss")
+echo "SCSS:"
+echo $SCSS
+echo
 # Getting all js files in project
 JS=$(find . -type f -name "*.js")
+echo "JS:"
+echo $JS
+echo
 
 # Getting all html files in project
 HTML=$(find . -type f -name "*.html")
+echo "HTML:"
+echo $HTML
+echo
 # Getting all htm files in project
 HTM=$(find . -type f -name "*.htm")
+echo "HTM:"
+echo $HTM
+echo
 
 # For counting all files that minified
 ITEMS=0

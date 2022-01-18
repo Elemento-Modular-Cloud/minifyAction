@@ -38,4 +38,4 @@ try:
     path = sys.argv[1]
     single_file(path)
 except:
-    print("Path not founded")
+    print("Path not found")

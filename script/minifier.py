@@ -51,5 +51,6 @@ def do_html(path, overwrite=True):
 try:
     path = sys.argv[1]
     single_file(path)
-except:
+except Exception as e:
+    print(e)
     print("Path not found: "+path)

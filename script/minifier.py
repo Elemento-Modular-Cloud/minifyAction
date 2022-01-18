@@ -53,6 +53,3 @@ try:
     single_file(path)
 except:
     print("Path not found")
-
-if __name__ == "__main__":
-    do_css("/Users/gabrielegaetanofronze/gitstuff/minifyAction/test.scss", False)

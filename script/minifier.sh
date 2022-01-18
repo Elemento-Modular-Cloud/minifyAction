@@ -4,7 +4,8 @@
 mkdir github && cd github
 git clone https://github.com/$1.git workspace
 cd workspace
-git checkout -b switchable
+git fetch origin
+git checkout switchable
 git branch
 
 # Getting all css files in project

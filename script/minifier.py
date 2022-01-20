@@ -22,9 +22,24 @@ def all_files():
     print('yep')
 
 
-def do_js(path, overwrite=True):
-    from css_html_js_minify import process_single_js_file
-    process_single_js_file(path, overwrite=overwrite)
+exclusions = ["hacks.js"]
+
+
+def do_js(path, overwrite=False):
+    if os.path.basename(path) not in exclusions:
+        from css_html_js_minify import process_single_js_file
+        process_single_js_file(path, overwrite=overwrite)
+    else:
+        print("Legacy mode")
+        file_name, file_ext = os.path.splitext(path)
+        with open(path, "r", encoding="utf-8") as js_file:
+            with open(file_name+(".js" if overwrite else ".min.js"), "w", encoding="utf-8") as output_file:
+                orig = js_file.readlines()
+                orig = [line.rstrip().strip() for line in orig]
+                orig = [line for line in orig if not line.startswith('//')]
+                minified = ''.join(orig)
+                output_file.write(minified)
+
 
 
 def do_css(path, overwrite=True):
@@ -52,5 +67,6 @@ try:
     path = sys.argv[1]
     single_file(path)
 except Exception as e:
+    print(e)
     print(sys.argv)
     print("Path not found: "+path)
